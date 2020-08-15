@@ -1,39 +1,41 @@
 import React, { useState, useEffect } from "react";
 import "./App.css";
-import { FormControl, Select, MenuItem } from "@material-ui/core";
-
-// https://disease.sh/v3/covid-19/states
+import { FormControl, Select, MenuItem, AppBar } from "@material-ui/core";
 
 function App() {
-  const [states, setStates] = useState([]);
+  const [countries, setCountries] = useState([]);
 
   useEffect(() => {
-    console.log("useEffect has fired off");
-    const getStatesData = async () => {
-      await fetch("https://disease.sh/v3/covid-19/states").then((response) =>
+    const getCountriesData = async () => {
+      await fetch("https://disease.sh/v3/covid-19/countries").then((response) =>
         response.json().then((data) => {
-          const states = data.map((state) => ({
-            name: state.state,
+          const countries = data.map((country) => ({
+            name: country.country,
+            value: country.countryInfo.iso2,
           }));
-          setStates(states);
+          setCountries(countries);
         })
       );
     };
-    getStatesData();
+    getCountriesData();
   }, []);
 
   return (
-    <div className="app">
+    <div className="appContainer">
       {/* Header */}
-      <div className="app_state_selector">
-        <FormControl className="app_dropdown">
-          <Select variant="standard" value="#">
-            {states.map((states) => (
-              <MenuItem value={states.value}>{states.name}</MenuItem>
-            ))}
-          </Select>
-        </FormControl>
-      </div>
+      <AppBar className="header" postion="static">
+        <p className="title">Title</p>
+        <div className="statePicker">
+          <FormControl className="app_dropdown">
+            <Select variant="outlined" value="#">
+              {countries.map((country) => (
+                <MenuItem value={country.value}>{country.name}</MenuItem>
+              ))}
+            </Select>
+          </FormControl>
+        </div>
+      </AppBar>
+
       {/* State List */}
       {/* Info Box */}
       {/* Info Box */}
