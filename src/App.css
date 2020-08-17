@@ -6,17 +6,43 @@ body {
   background-color: #e0e0e0;
 }
 
-/* .app {
-  display: flex;
-  justify-content: space-evenly;
-  padding: 20px;
-} */
+.app {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 25% 1fr 1fr;
+  row-gap: 20px;
+}
 
-.app_dropdown {
+.app__appbar {
+  grid-column-start: 1;
+  grid-column-end: 4;
+  background-color: white;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+.app__dropdown {
   background-color: white;
 }
 
-.app_stats {
+.app__stats {
+  grid-column-start: 1;
+  grid-column-end: 4;
+  margin: 5px;
   display: flex;
-  justify-content: space-between;
+  justify-content: space-evenly;
+}
+
+.app__graphs {
+  grid-column-start: 1;
+  grid-column-end: 4;
+  margin: 10px;
+}
+
+.app__map {
+  background-color: white;
+  grid-column-start: 1;
+  grid-column-end: 4;
+  margin: 10px;
 }
